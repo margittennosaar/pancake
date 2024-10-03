@@ -11,6 +11,7 @@ let selectedToppings = [];
 let selectedExtras = [];
 let selectedDelivery = '';
 
+//calculates total price. Uses dataset method. In the html we have some data-* properties.
 const pancakePriceCalc = () => {
     const selectedTypeOption = typeSelect.selectedOptions[0];
     const basePrice = parseInt(selectedTypeOption.dataset.price) || 0;
@@ -28,6 +29,7 @@ const pancakePriceCalc = () => {
 
     totalPriceElement.textContent = `${total.toFixed(0)}€`;
 
+    //animation
     const priceBanner = document.querySelector('.price-banner');
     priceBanner.animate(
         [
@@ -42,6 +44,7 @@ const pancakePriceCalc = () => {
     );
 };
 
+//returnes all checked potions and ads it's values to the total price
 const checkToppings = () => {
     checkboxes.forEach(item => {
         if (item.checked) {
@@ -57,6 +60,7 @@ const checkToppings = () => {
     });
 };
 
+//adds 5 to tatal if delivery is checked
 const checkDeliveryOptions = () => {
     selectedDelivery = [...deliveryOptions].find(option => option.checked)?.value || 'eat_in';
     if (selectedDelivery === 'delivery') {
@@ -64,6 +68,7 @@ const checkDeliveryOptions = () => {
     }
 };
 
+//displays full order info
 const displayOrder = () => {
     const customerName = document.querySelector('#customerName').value || 'Guest';
     const orderType = document.querySelector('#order_type');
